@@ -14,7 +14,8 @@ class Debug_Bar_Post_Meta extends Debug_Bar_Panel {
 			$output = "<div class='template-trace' id='debug-bar-post-meta'>";
 			foreach( $wp_query->posts as $single_post ){
 				$output .= "<h3 style=''>".$single_post->post_title."</h3>";
-				$metas = get_post_meta( $single_post->ID );
+				$get_id = ( ! is_bool(get_the_ID()) ? get_the_ID() : $_GET['id'] );
+				$metas = get_post_meta( $get_id );
 				$output .= '<table>';
 				foreach ( $metas as $key => $values ) {
 					$output .= '<tr>';
